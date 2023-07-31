@@ -1,0 +1,86 @@
+
+create table user_details(
+"id" uuid not null default uuid_generate_v4(),
+"name" character varying not null,
+"address" character varying not null,
+"phone_number" character varying not null,
+"email" character varying not null,
+"password" character varying not null,
+constraint "111" primary key ("id")
+);
+create  table product_details(
+"id" uuid not null default uuid_generate_v4(),
+"sku" uuid not null default uuid_generate_v4(),
+"name" character varying not null,
+"description" character varying not null,
+"price" float not null,
+constraint "1514" primary key ("id")
+);
+ 
+create table product_category(
+"id" uuid not null default uuid_generate_v4(),
+"name" character varying not null,
+constraint "1554" primary key ("id")
+
+);
+create table productdetail_category(
+"product_id" uuid not null,
+"category_id" uuid not null);
+
+
+create table order_detail(
+"id" uuid not null default uuid_generate_v4(),
+"user_id" uuid not null,
+"order_address" character varying not null,
+"price" float ,
+"count" integer,
+constraint "14114" primary key ("id")
+);
+create table order_product(
+"order-id" uuid not null,
+"product_id" uuid not null);
+
+INSERT INTO public.user_details
+("name", address, phone_number, email, "password")
+values('Vidya V', 'abc', '7306151602', 'vidya@gmail.com', 'vv123'),('Veena V', 'abc', '8281283843', 'veena@gmail.com', 'veena23'),('jalaja', 'abc', '9496275743', 'jalaja@gmail.com', 'jj123');
+
+INSERT INTO public.product_details
+("name", description, price)
+VALUES( 'Fan', 'Ceiling fan', 333.4),( 'light', 'decoration lights', 345.4),( 'phone', 'Best phone', 20333.4),( 'Book', 'note book', 34),( 'pen', 'blue', 30);
+
+INSERT INTO public.product_category
+("name")
+VALUES('accessories'),('electronic'),('home application'),('school items');
+
+INSERT INTO public.productdetail_category
+(product_id, category_id)
+VALUES('1029fbd4-a8f1-4c6d-a57c-a44b0a306ae8', 'a5e3a653-5172-441e-a237-48040c0c88fc');
+
+INSERT INTO public.order_detail
+(user_id, order_address, price, "count")
+VALUES( 'f578ed82-8bd9-484c-8802-5ab3e7cebc7b','snaj',1434,2);
+INSERT INTO public.order_detail
+(user_id, order_address, price, "count")
+VALUES( 'ccc5c6d7-1699-4321-bc8d-4ec83e2e7b40','sdsf',1435,1);
+
+
+alter table order_product add "count" integer not null;
+
+INSERT INTO public.order_product
+("order-id", product_id,"count")
+VALUES('98af18bc-c044-4484-b24a-5a06b4fd8788', 'cd2b0aa6-0b44-4dc6-925d-e7989890ef7d','2'),('ccc5c6d7-1699-4321-bc8d-4ec83e2e7b40','549f5c46-e1ff-40c2-81df-774901836207',1);
+
+drop table product_category  ;
+
+alter table order_details add constraint "144" primary key ("id");
+
+create index product_name on product_detail("name");
+create index prod_category on product_category("name");
+
+
+
+
+
+
+
+
